@@ -35,12 +35,10 @@ public class ManajerKeuangan {
         return total;
     }
 
-    // Saldo = Total Pemasukan - Total Pengeluaran
     public long hitungSaldo() {
         return hitungTotalPemasukan() - hitungTotalPengeluaran();
     }
 
-    // Smart Financial Insight (3 kondisi sesuai proposal)
     public String getInsight() {
         long masuk = hitungTotalPemasukan();
         long keluar = hitungTotalPengeluaran();
@@ -77,7 +75,6 @@ public class ManajerKeuangan {
         }
     }
 
-    // ===== File I/O: Object Serialization =====
     public void simpanKeFile() {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileData))) {
             out.writeObject(daftar);
@@ -91,7 +88,7 @@ public class ManajerKeuangan {
     public void muatDariFile() {
         File f = new File(fileData);
         if (!f.exists()) {
-            return; // belum ada data tersimpan
+            return; 
         }
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(f))) {
             daftar = (ArrayList<Transaksi>) in.readObject();
